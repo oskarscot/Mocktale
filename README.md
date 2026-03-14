@@ -58,11 +58,11 @@ void healthComponent_clampsToMax() {
         })
         .build();
 
-    entity.getComponent(HealthComponent.class).someOperation("hello");
+    entity.getComponent(YourCustomComponent.class).someOperation("hello");
 
     Assertions.assertEquals(
         100,
-        entity.getComponent(HealthComponent.class).getX()
+        entity.getComponent(YourCustomComponent.class).getX()
     );
 }
 ```
@@ -73,7 +73,7 @@ void healthComponent_clampsToMax() {
 @Test
 void regenSystem_restoresHealthEachTick() {
     MockEntity entity = Mocktale.entity()
-        .withComponent(HealthComponent::new, c -> c.setCurrent(50))
+        .withComponent(YourCustomComponent::new, c -> c.setCurrent(50))
         .withComponent(RegenComponent::new, c -> c.setRate(5))
         .build();
 
@@ -85,7 +85,7 @@ void regenSystem_restoresHealthEachTick() {
     store.tick(1f)
 
     Assertions.assertEquals(55,
-        store.getComponent(HealthComponent.class).getX()
+        store.getComponent(YourCustomComponent.class).getX()
     );
 }
 ```
